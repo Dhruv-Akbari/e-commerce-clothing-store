@@ -43,7 +43,7 @@ const Contact = () => {
       setLoading(true);
       setStatus("");
 
-      const response = await fetch("http://localhost:3000/api/contact", {
+      const response = await fetch("https://e-commerce-clothing-store-wzw0.onrender.com/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

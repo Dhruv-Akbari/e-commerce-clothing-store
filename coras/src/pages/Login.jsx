@@ -27,7 +27,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        "https://e-commerce-clothing-store-wzw0.onrender.com/api/auth/login",
         loginData,
         { withCredentials: true },
       );

@@ -85,7 +85,7 @@ const userInitial = userName.trim().charAt(0).toUpperCase() || "U";
   const handelogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/api/auth/logout",
+        "https://e-commerce-clothing-store-wzw0.onrender.com/api/auth/logout",
         {},
         { withCredentials: true },
       );

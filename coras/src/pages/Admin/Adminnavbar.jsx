@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink,useNavigate } from "react-router-dom";
-import { LogOut } from "lucide";
+import { LogOut } from "lucide-react";
 import axios from "axios";
 
 
@@ -15,7 +15,7 @@ const AdminNavbar = () => {
   const handelogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/api/auth/logout",
+        "https://e-commerce-clothing-store-wzw0.onrender.com/api/auth/logout",
         {},
         { withCredentials: true },
       );

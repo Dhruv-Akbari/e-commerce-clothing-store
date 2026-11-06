@@ -54,7 +54,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/Register",
+        "https://e-commerce-clothing-store-wzw0.onrender.com/api/auth/Register",
         formData,
       );
 
