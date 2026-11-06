@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* MAIN PRODUCT CAROUSEL */
+
+.product-detail-swiper {
+  height: 100%;
+  width: 100%;
+}
+
+.product-detail-swiper .swiper-button-next,
+.product-detail-swiper .swiper-button-prev {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  
+  color: #171717;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+.product-detail-swiper .swiper-button-next:hover,
+.product-detail-swiper .swiper-button-prev:hover {
+  
+  color: white;
+}
+
+.product-detail-swiper .swiper-button-next::after,
+.product-detail-swiper .swiper-button-prev::after {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.product-detail-swiper .swiper-pagination-bullet {
+  background: white;
+  opacity: 0.7;
+}
+
+.product-detail-swiper .swiper-pagination-bullet-active {
+  background: #171717;
+  opacity: 1;
+}
+
+/* THUMBNAILS */
+
+.product-thumbs .swiper-slide {
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+.product-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.product-thumbs .swiper-slide-thumb-active > div {
+  border-color: #171717;
+}
