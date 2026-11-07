@@ -144,7 +144,7 @@ res.cookie("userId", ExistEmail._id.toString(), {
     sameSite: isProduction ? "none" : "lax",
     maxAge: 24 * 60 * 60 * 1000,
 });
-  window.dispatchEvent(new Event("userUpdated"));
+ 
         return res.status(200).json({
             message: 'Successfully logged in',
             Data: {

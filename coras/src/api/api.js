@@ -48,7 +48,7 @@ export const Login = async (data) => {
 
   
   localStorage.setItem("user", JSON.stringify(response.data.Data));
-
+    window.dispatchEvent(new Event("userUpdated"));
   return response.data;
 };
 
