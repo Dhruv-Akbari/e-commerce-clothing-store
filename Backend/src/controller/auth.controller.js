@@ -59,7 +59,7 @@ const register = async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax'
+            sameSite: 'none'
         });
 
         return res.status(201).json({
@@ -132,14 +132,14 @@ const login = async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+             sameSite: process.env.NODE_ENV === 'none',
              maxAge: 24 * 60 * 60 * 1000
         });
 
         res.cookie('userId', ExistEmail._id.toString(), {
             httpOnly: false,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            sameSite: process.env.NODE_ENV === 'none',
             maxAge: 24 * 60 * 60 * 1000 // 1 day in milliseconds
         });
 
