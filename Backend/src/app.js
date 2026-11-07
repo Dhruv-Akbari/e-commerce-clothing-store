@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
         "http://localhost:5173",
-        "https://e-commerce-clothing-store-k8uwmpvhe-ad-88ee.vercel.app"
+        "https://e-commerce-clothing-store-blue.vercel.app"
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
