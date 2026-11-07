@@ -129,20 +129,22 @@ const login = async (req, res) => {
         );
 
         
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-             sameSite: process.env.NODE_ENV === 'none',
-             maxAge: 24 * 60 * 60 * 1000
-        });
+const isProduction = process.env.NODE_ENV === "production";
 
-        res.cookie('userId', ExistEmail._id.toString(), {
-            httpOnly: false,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'none',
-            maxAge: 24 * 60 * 60 * 1000 // 1 day in milliseconds
-        });
+res.cookie("token", token, {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
+    maxAge: 24 * 60 * 60 * 1000,
+});
 
+res.cookie("userId", ExistEmail._id.toString(), {
+    httpOnly: false,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
+    maxAge: 24 * 60 * 60 * 1000,
+});
+  window.dispatchEvent(new Event("userUpdated"));
         return res.status(200).json({
             message: 'Successfully logged in',
             Data: {
