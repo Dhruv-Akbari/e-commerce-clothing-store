@@ -39,6 +39,7 @@ const cartCount = cartItems.reduce(
 
   
   const addToCart = async (product, size, color) => {
+     console.log("CartContext userId:", userId);
     if (!userId) {
       throw new Error("Please log in before adding items to your cart.");
     }
