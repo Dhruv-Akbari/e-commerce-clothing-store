@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ const Login = () => {
     password: "",
   });
 
-  // Added for show/hide password
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handelchange = (e) => {
     setLoginData({
@@ -25,18 +25,25 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    if (loading) return;
+
+    setLoading(true);
+
     try {
       const response = await axios.post(
         "https://e-commerce-clothing-store-wzw0.onrender.com/api/auth/login",
         loginData,
-        { withCredentials: true },
+        { withCredentials: true }
       );
 
       const { token, Data } = response.data;
 
+      // Save token and complete user data
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(Data));
-      
+
+      // Notify components using useUserId
+      window.dispatchEvent(new Event("userUpdated"));
 
       if (Data.role === "user") {
         navigate("/Home");
@@ -45,11 +52,16 @@ const Login = () => {
       } else {
         alert("Invalid user role");
       }
+
     } catch (error) {
       console.log("ERROR:", error);
       console.log("RESPONSE:", error.response);
       console.log("MESSAGE:", error.message);
+
       alert("Login failed");
+
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,7 +75,9 @@ const Login = () => {
           Welcome Back
         </h3>
 
-        <p className="mb-7 text-sm text-slate-500">Login to your account</p>
+        <p className="mb-7 text-sm text-slate-500">
+          Login to your account
+        </p>
 
         {/* Email */}
         <div className="mb-4">
@@ -74,9 +88,11 @@ const Login = () => {
           <input
             type="email"
             name="Email"
+            value={loginData.Email}
             onChange={handelchange}
             placeholder="Enter your email"
             required
+            disabled={loading}
             className="w-full rounded-lg border border-slate-200 bg-white/60 px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-slate-400 focus:bg-white"
           />
         </div>
@@ -87,20 +103,22 @@ const Login = () => {
             Password
           </label>
 
-          {/* Added password wrapper and eye icon */}
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
+              value={loginData.password}
               onChange={handelchange}
               placeholder="Enter your password"
               required
+              disabled={loading}
               className="w-full rounded-lg border border-slate-200 bg-white/60 px-3 py-2.5 pr-10 text-sm text-slate-800 outline-none transition focus:border-slate-400 focus:bg-white"
             />
 
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
+              disabled={loading}
               className="absolute inset-y-0 right-3 flex items-center text-slate-500 hover:text-slate-800"
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
@@ -116,9 +134,17 @@ const Login = () => {
         {/* Login button */}
         <button
           type="submit"
-          className="w-full rounded-lg bg-slate-800 py-2.5 text-sm font-medium text-white transition duration-200 hover:scale-[1.02] hover:bg-slate-700 active:scale-[0.98]"
+          disabled={loading}
+          className="w-full flex items-center justify-center gap-2 rounded-lg bg-slate-800 py-2.5 text-sm font-medium text-white transition duration-200 hover:scale-[1.02] hover:bg-slate-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
         >
-          Login
+          {loading ? (
+            <>
+              <LoaderCircle size={18} className="animate-spin" />
+              Logging in...
+            </>
+          ) : (
+            "Login"
+          )}
         </button>
 
         {/* Register link */}
@@ -126,6 +152,7 @@ const Login = () => {
           Don't have an account?{" "}
           <button
             type="button"
+            disabled={loading}
             onClick={() => navigate("/Register")}
             className="font-medium text-slate-800 hover:underline"
           >

@@ -54,6 +54,22 @@ const MaleProduct = () => {
 
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+  const shouldScroll = sessionStorage.getItem("scrollToMaleProducts");
+
+  if (shouldScroll === "true") {
+    sessionStorage.removeItem("scrollToMaleProducts");
+
+    setTimeout(() => {
+      document.getElementById("male-products-grid")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 300);
+  }
+}, []);
+
   const cartCount = cartItems.reduce(
     (total, item) => total + (item.quantity || 1),
     0,
@@ -120,7 +136,7 @@ const MaleProduct = () => {
           </div>
         </section>
 
-        <section className="sticky top-4 z-20 mt-8">
+        <section   id="male-products-grid" className="sticky top-4 z-20 mt-8">
           <div
             className="flex gap-2 overflow-x-auto p-2 rounded-full
             bg-white/60 backdrop-blur-xl border border-white/80

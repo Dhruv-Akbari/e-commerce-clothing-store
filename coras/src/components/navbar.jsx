@@ -174,14 +174,15 @@ const userInitial = userName.trim().charAt(0).toUpperCase() || "U";
               >
                 <button
                   type="button"
-                  onClick={() => goTo("/MaleProduct")}
+                  
+                  onClick={() =>{ sessionStorage.setItem("scrollToMaleProducts", "true");  goTo("/MaleProduct")}}
                   className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-[16px] font-medium text-gray-700 hover:bg-gray-100 hover:text-black"
                 >
                   Men
                 </button>
                 <button
                   type="button"
-                  onClick={() => goTo("/WomanProduct")}
+                  onClick={() => { sessionStorage.setItem("scrollToWomenProducts", "true"); goTo("/WomanProduct")}}
                   className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-[16px] font-medium text-gray-700 hover:bg-gray-100 hover:text-black"
                 >
                   Women
@@ -439,7 +440,7 @@ const userInitial = userName.trim().charAt(0).toUpperCase() || "U";
             </button>
 
             <button
-              onClick={() => goTo("/MaleProduct")}
+              onClick={() =>{ sessionStorage.setItem("scrollToMaleProducts", "true");  goTo("/MaleProduct")}}
               className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left font-medium text-gray-700 hover:bg-white/70"
             >
               <ShoppingBag size={19} />
@@ -447,7 +448,7 @@ const userInitial = userName.trim().charAt(0).toUpperCase() || "U";
             </button>
 
             <button
-              onClick={() => goTo("/WomanProduct")}
+              onClick={() => {sessionStorage.setItem("scrollToWomenProducts", "true"); goTo("/WomanProduct")}}
               className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left font-medium text-gray-700 hover:bg-white/70"
             >
               <ShoppingBag size={19} />

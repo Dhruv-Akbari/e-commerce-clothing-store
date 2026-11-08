@@ -39,6 +39,21 @@ const WomanProduct = () => {
     0,
   );
 
+useEffect(() => {
+  const shouldScroll = sessionStorage.getItem("scrollToWomenProducts");
+
+  if (shouldScroll === "true") {
+    sessionStorage.removeItem("scrollToWomenProducts");
+
+    setTimeout(() => {
+      document.getElementById("women-products-grid")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 300);
+  }
+}, []);
+
   useEffect(() => {
     const fetchdata = async () => {
       try {
@@ -97,7 +112,7 @@ const WomanProduct = () => {
 
       <main className="px-5 md:px-10 lg:px-16 py-8">
         {/* Header */}
-        <section
+        <section   id="women-products-grid"
           className="relative overflow-hidden rounded-[2rem]
           bg-white/50 backdrop-blur-xl border border-white/70
           shadow-[0_20px_60px_rgba(0,0,0,0.06)]
