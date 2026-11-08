@@ -438,27 +438,20 @@ const userInitial = userName.trim().charAt(0).toUpperCase() || "U";
               <span>Home</span>
             </button>
 
-            {/* MOBILE CART FIX */}
             <button
-              type="button"
-              onClick={handleCartClick}
-              className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left font-medium text-gray-700 hover:bg-white/70"
+              onClick={() => goTo("/MaleProduct")}
+              className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left font-medium text-gray-700 hover:bg-white/70"
             >
-              <div className="flex items-center gap-3">
-                <ShoppingCart size={19} />
-                <span>Cart</span>
-              </div>
-              <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">
-                {cartCount} {/* Fixed hardcoded 2 */}
-              </span>
+              <ShoppingBag size={19} />
+              <span>Men</span>
             </button>
 
             <button
-              onClick={() => goTo("/Logout")}
-              className="mt-2 flex w-full items-center gap-3 rounded-xl bg-gray-900 px-4 py-3 text-left font-semibold text-white hover:bg-red-600"
+              onClick={() => goTo("/WomanProduct")}
+              className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left font-medium text-gray-700 hover:bg-white/70"
             >
-              <LogOut size={19} />
-              <span>Logout</span>
+              <ShoppingBag size={19} />
+              <span>Women</span>
             </button>
           </div>
         </div>

@@ -40,7 +40,7 @@ const ViewOrders = () => {
       setActionLoading(null);
     }
   };
-console.log(orders);
+
 
   const handleRefundReturn = async (orderId, action) => {
     try {
